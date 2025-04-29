@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>1. Портфоліо Богдана Цхая.md</title><style></style></head><body id="preview">
+ Портфоліо Богдана Цхая.md</title><style></style></head><body id="preview">
 <h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="1____0"></a>1. Портфоліо Богдана Цхая</h1>
 <p class="has-line-data" data-line-start="1" data-line-end="2"><strong>Посилання:</strong> <a href="https://bogdantskhai.github.io/KN-24-1_Tskhai_Bogdan/">https://bogdantskhai.github.io/KN-24-1_Tskhai_Bogdan/</a></p>
 <h2 class="code-line" data-line-start=3 data-line-end=4 ><a id="__3"></a>Як працює:</h2>
