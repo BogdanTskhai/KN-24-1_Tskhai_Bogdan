@@ -2,18 +2,13 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Моя сторінка</title>
-  <!-- Bootstrap CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    body, html {
-      margin: 0;
-      padding: 0;
+    html, body {
       height: 100%;
+      margin: 0;
       font-family: Arial, sans-serif;
     }
 
@@ -35,6 +30,7 @@
       justify-content: center;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
       backdrop-filter: blur(8px);
+      flex-wrap: wrap;
     }
 
     .button {
@@ -52,12 +48,6 @@
       position: relative;
     }
 
-    @keyframes blinkColor {
-      0% { background-color: #ff7f50; color: white; }
-      50% { background-color: #ffffffaa; color: #473a80; }
-      100% { background-color: #ff7f50; color: white; }
-    }
-
     .button:hover:not(.return-button) {
       animation: blinkColor 1.3s infinite;
       transform: scale(1.05);
@@ -67,16 +57,23 @@
       transform: scale(1.05);
     }
 
+    @keyframes blinkColor {
+      0% { background-color: #ff7f50; color: white; }
+      50% { background-color: #ffffffaa; color: #473a80; }
+      100% { background-color: #ff7f50; color: white; }
+    }
+
     .return-container {
       position: absolute;
-      top: 50px;
-      right: 50px;
+      top: 20px;
+      right: 20px;
+      z-index: 2;
     }
 
     .invisible-button {
       position: absolute;
       top: 50%;
-      left: 38%;
+      left: 50%;
       transform: translate(-50%, -50%);
       width: 650px;
       height: 150px;
@@ -88,12 +85,12 @@
     .profile {
       background: rgba(255, 255, 255, 0.3);
       border-radius: 20px;
-      padding: 40px;
+      padding: 30px;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
       backdrop-filter: blur(8px);
       color: #473a80;
       font-size: 14px;
-      text-align: center;
+      margin-top: 200px; /* зміщено на 20px */
     }
 
     .profile img {
@@ -101,7 +98,8 @@
       height: 120px;
       border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 15px;
+      display: block;
+      margin: 0 auto 15px auto;
     }
 
     .alias-name {
@@ -136,8 +134,8 @@
 
     #contact-panel {
       position: absolute;
-      top: 0;
-      right: 100%;
+      top: 100%;
+      right: 0;
       background: rgba(255, 255, 255, 0.95);
       border-radius: 15px;
       padding: 20px 40px;
@@ -147,16 +145,44 @@
       font-size: 16px;
       white-space: nowrap;
       opacity: 0;
-      transform: translateX(20px);
+      transform: translateY(20px);
       pointer-events: none;
       transition: transform 0.4s ease, opacity 0.4s ease;
-      z-index: 1;
+      z-index: 999;
     }
 
     #contact-panel.open {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0);
       pointer-events: auto;
+    }
+
+    @media (max-width: 768px) {
+      .overlay {
+        flex-direction: column;
+        padding: 15px;
+      }
+
+      .profile {
+        margin-top: 100px;
+      }
+
+      .invisible-button {
+        width: 90%;
+        height: 100px;
+      }
+
+      .return-container {
+        top: 10px;
+        right: 10px;
+      }
+
+      #contact-panel {
+        right: auto;
+        left: 0;
+        top: 100%;
+        width: max-content;
+      }
     }
   </style>
 </head>
@@ -167,60 +193,55 @@
     <a href="https://porokhovnichenkoiryna.github.io/learning_git/public/" class="button return-button">Return</a>
   </div>
 
-  <!-- Контейнер з кнопками -->
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-auto overlay">
-        <div class="position-relative">
-          <a href="#" class="button" onclick="toggleContactPanel(event)">Contact Informations</a>
-          <div id="contact-panel">
-            <strong>Контактна інформація:</strong><br><br>
-            Discord: MeserShmitt#1426<br>
-            Telegram: MeserShmitt<br>
-            Phone: 0994372949<br>
-            Email: messershmitt1426@gmail.com
-          </div>
+  <!-- Кнопки -->
+  <div class="container text-center">
+    <div class="row justify-content-center overlay">
+      <div class="col-auto position-relative">
+        <a href="#" class="button" onclick="toggleContactPanel(event)">Contact Informations</a>
+        <div id="contact-panel">
+          <strong>Контактна інформація:</strong><br><br>
+          Discord: MeserShmitt#1426<br>
+          Telegram: MeserShmitt<br>
+          Phone: 0994372949<br>
+          Email: messershmitt1426@gmail.com
         </div>
+      </div>
+      <div class="col-auto">
         <a href="https://github.com/BogdanTskhai/KN-24-1_Tskhai_Bogdan" class="button">GitHub</a>
       </div>
     </div>
   </div>
 
-  <!-- Невидима кнопка з посиланням -->
+  <!-- Невидима кнопка -->
   <a href="https://youtu.be/PKcfiyXYJBQ?si=SnU62kE7a5mFCj9P" class="invisible-button" title="Перехід за посиланням"></a>
 
-  <!-- Профіль (з Bootstrap центруванням) -->
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-6 col-lg-4">
-        <div class="profile">
-          <img src="https://cdn.discordapp.com/attachments/1030897765422731336/1369433659131826264/11zon_cropped.png?ex=681fcc7b&is=681e7afb&hm=a45cf7d1d0a5804a9741db859d46d3196cc8860cffccfaade5262b8a86488b52&" alt="Фото профілю">
-          <div class="alias-name">
-            <span>MeserShmitt</span>
-            <div class="divider"></div>
-            <span>Tskhai Bogdan</span>
-          </div>
-          <div class="separator"></div>
-          <div class="info-block">
-            <p><strong>Про мене:</strong><br>
-              Рівень: Бакалавр (1 курс)<br>
-              Спеціальність: Комп’ютерні науки<br>
-              Навчальний заклад: КНУБА</p>
+  <!-- Профіль -->
+  <div class="container d-flex justify-content-center">
+    <div class="profile col-12 col-md-6">
+      <img src="https://cdn.discordapp.com/attachments/1030897765422731336/1369433659131826264/11zon_cropped.png?ex=681fcc7b&is=681e7afb&hm=a45cf7d1d0a5804a9741db859d46d3196cc8860cffccfaade5262b8a86488b52&" alt="Фото профілю">
+      <div class="alias-name">
+        <span>MeserShmitt</span>
+        <div class="divider"></div>
+        <span>Tskhai Bogdan</span>
+      </div>
+      <div class="separator"></div>
+      <div class="info-block">
+        <p><strong>Про мене:</strong><br>
+          Рівень: Бакалавр (1 курс)<br>
+          Спеціальність: Комп’ютерні науки<br>
+          Навчальний заклад: КНУБА</p>
 
-            <p><strong>Навички:</strong><br>
-              C++<br>
-              Java<br>
-              Робота з Git</p>
+        <p><strong>Навички:</strong><br>
+          C++<br>
+          Java<br>
+          Робота з Git</p>
 
-            <p><strong>Про себе:</strong><br>
-              Цілеспрямований студент КНУБА, який прагне розвиватися у сфері програмування та розробки програмного забезпечення. Вмію працювати з системами контролю версій, вивчаю мови програмування C++ та Java.</p>
-          </div>
-        </div>
+        <p><strong>Про себе:</strong><br>
+          Цілеспрямований студент КНУБА, який прагне розвиватися у сфері програмування та розробки програмного забезпечення. Вмію працювати з системами контролю версій, вивчаю мови програмування C++ та Java.</p>
       </div>
     </div>
   </div>
 
-  <!-- JS для контактної панелі -->
   <script>
     function toggleContactPanel(event) {
       event.preventDefault();
@@ -228,9 +249,5 @@
       panel.classList.toggle("open");
     }
   </script>
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
