@@ -18,10 +18,10 @@
       background-position: center;
       background-repeat: no-repeat;
       position: relative;
+      background-color: #0d1b2a; /* Темно-синій фон позаду */
     }
 
     .overlay {
-      margin-top: 20px;
       background: rgba(255, 255, 255, 0.3);
       border-radius: 20px;
       padding: 20px 40px;
@@ -32,6 +32,9 @@
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
       backdrop-filter: blur(8px);
       flex-wrap: wrap;
+      position: relative;
+      margin-top: 20px; /* Встановлено відступ для кнопок на 20px */
+      z-index: 2;
     }
 
     .button {
@@ -49,12 +52,8 @@
       position: relative;
     }
 
-    .button:hover:not(.return-button) {
+    .button:hover {
       animation: blinkColor 1.3s infinite;
-      transform: scale(1.05);
-    }
-
-    .return-button:hover {
       transform: scale(1.05);
     }
 
@@ -62,25 +61,6 @@
       0% { background-color: #ff7f50; color: white; }
       50% { background-color: #ffffffaa; color: #473a80; }
       100% { background-color: #ff7f50; color: white; }
-    }
-
-    .return-container {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      z-index: 2;
-    }
-
-    .invisible-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 650px;
-      height: 150px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
     }
 
     .profile {
@@ -91,7 +71,7 @@
       backdrop-filter: blur(8px);
       color: #473a80;
       font-size: 14px;
-      margin-top: 200px;
+      margin-top: 30px; /* Встановлено відступ для профілю */
     }
 
     .profile img {
@@ -158,24 +138,32 @@
       pointer-events: auto;
     }
 
+    .invisible-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 650px;
+      height: 150px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
     @media (max-width: 768px) {
       .overlay {
         flex-direction: column;
         padding: 15px;
+        margin-top: 10px; /* Встановлено відступ для кнопок на 10px для мобільних екранів */
       }
 
       .profile {
-        margin-top: 100px;
+        margin-top: 30px; /* Встановлено відступ для профілю */
       }
 
       .invisible-button {
         width: 90%;
         height: 100px;
-      }
-
-      .return-container {
-        top: 10px;
-        right: 10px;
       }
 
       #contact-panel {
@@ -189,26 +177,18 @@
 </head>
 <body>
 
-  <!-- Кнопка повернення -->
-  <div class="return-container">
-    <a href="https://porokhovnichenkoiryna.github.io/learning_git/public/" class="button return-button">Return</a>
-  </div>
-
-  <!-- Кнопки -->
-  <div class="container text-center">
-    <div class="row justify-content-center overlay">
-      <div class="col-auto position-relative">
-        <a href="#" class="button" onclick="toggleContactPanel(event)">Contact Informations</a>
-        <div id="contact-panel">
-          <strong>Контактна інформація:</strong><br><br>
-          Discord: MeserShmitt#1426<br>
-          Telegram: MeserShmitt<br>
-          Phone: 0994372949<br>
-          Email: messershmitt1426@gmail.com
-        </div>
-      </div>
-      <div class="col-auto">
-        <a href="https://github.com/BogdanTskhai/KN-24-1_Tskhai_Bogdan" class="button">GitHub</a>
+  <!-- Прямокутник з кнопками -->
+  <div class="container d-flex justify-content-center">
+    <div class="overlay">
+      <a href="https://porokhovnichenkoiryna.github.io/learning_git/public/" class="button return-button">Return</a>
+      <a href="https://github.com/BogdanTskhai/KN-24-1_Tskhai_Bogdan" class="button">GitHub</a>
+      <a href="#" class="button" onclick="toggleContactPanel(event)">Contact Informations</a>
+      <div id="contact-panel">
+        <strong>Контактна інформація:</strong><br><br>
+        Discord: MeserShmitt#1426<br>
+        Telegram: MeserShmitt<br>
+        Phone: 0994372949<br>
+        Email: messershmitt1426@gmail.com
       </div>
     </div>
   </div>
@@ -250,3 +230,5 @@
       panel.classList.toggle("open");
     }
   </script>
+</body>
+</html>
